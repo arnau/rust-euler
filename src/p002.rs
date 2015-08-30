@@ -7,7 +7,7 @@
 //
 // By considering the terms in the Fibonacci sequence whose values do not
 // exceed four million, find the sum of the even-valued terms.
-pub fn even_fib(bound: u32) -> u32 {
+pub fn sum_even_fib(bound: u32) -> u32 {
     fib(bound).iter()
         .filter(|&x| x % 2 == 0)
         .fold(0, |sum, x| sum + x)
@@ -35,12 +35,12 @@ mod tests {
     }
 
     #[test]
-    fn test_even_fib_89() {
-        assert_eq!(even_fib(89), 44);
+    fn test_sum_even_fib_89() {
+        assert_eq!(sum_even_fib(89), 44);
     }
 
     #[test]
-    fn test_even_fib_4_000_000() {
-        assert_eq!(even_fib(4_000_000), 4613732);
+    fn test_sum_even_fib_4_000_000() {
+        assert_eq!(sum_even_fib(4_000_000), 4613732);
     }
 }
