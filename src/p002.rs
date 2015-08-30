@@ -25,6 +25,22 @@ pub fn fib(bound: u32) -> Vec<u32> {
     seq
 }
 
+// Following the overview
+pub fn alt_sum_even_fib(b: u32) -> u32 {
+    let mut s = 0;
+    let mut x = 1;
+    let mut y = 1;
+
+    while y < b {
+        let z = x + y;
+        x = y;
+        y = z;
+        if y % 2 == 0 { s += y; }
+    }
+
+    s
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -43,4 +59,10 @@ mod tests {
     fn test_sum_even_fib_4_000_000() {
         assert_eq!(sum_even_fib(4_000_000), 4613732);
     }
+
+    #[test]
+    fn test_alt_sum_even_fib_4_000_000() {
+        assert_eq!(alt_sum_even_fib(4_000_000), 4613732);
+    }
+
 }
