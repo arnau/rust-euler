@@ -8,7 +8,7 @@ pub fn largest_prime_factor(n: u64) -> u64 {
     let mut last = 1;
     let mut factor = 2;
 
-    while factor <= number {
+    while factor <= (number / 2) {
         while number % factor == 0 {
             last = factor;
             number = number / factor;
