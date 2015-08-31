@@ -66,7 +66,7 @@ fn prime_factors(mut x: u32) -> Vec<u32> {
 pub fn alt_smallest_multiple(n: u32) -> u32 {
     let mut f = 2;
 
-    for x in 1..n {
+    for x in 3..n {
         let p = f % x;
 
         if p != 0 {
