@@ -80,6 +80,27 @@ pub fn alt_smallest_multiple(n: u32) -> u32 {
     f
 }
 
+pub fn lcm(n: u32) -> u32 {
+    let mut lcm = 1;
+    for x in 1..n {
+        let gcd = gcd(lcm, x);
+        lcm = match gcd {
+            1 => lcm * x,
+            _ => lcm * (x / gcd)
+        };
+    }
+
+    lcm
+}
+
+fn gcd(a: u32, b: u32) -> u32 {
+    match b {
+        0 => a,
+        _ => gcd(b, a % b)
+    }
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -103,4 +124,15 @@ mod tests {
     fn test_alt_smallest_multiple_20() {
         assert_eq!(alt_smallest_multiple(20), 232792560);
     }
+
+    #[test]
+    fn test_lcm_10() {
+        assert_eq!(lcm(10), 2520);
+    }
+
+    #[test]
+    fn test_lcm_20() {
+        assert_eq!(lcm(20), 232792560);
+    }
+
 }
