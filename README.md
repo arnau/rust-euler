@@ -2,5 +2,10 @@
 
 Approached as a library where each problem is a module.
 
-    $ cargo test
+To run it just
 
+    $ make test
+
+Or, if you don't have Docker installed
+
+    $ cargo test
