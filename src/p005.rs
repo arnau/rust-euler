@@ -9,7 +9,7 @@ pub fn smallest_multiple(n: u32) -> u32 {
     let mut xs: Vec<u32> = vec![];
     let mut x = n;
 
-    while x >= 2 {
+    while x >= (n / 2) {
         let ys = max_vec(prime_factors(x));
         xs = concat_vecs(&ys, &xs);
 
@@ -62,6 +62,24 @@ fn prime_factors(mut x: u32) -> Vec<u32> {
     xs
 }
 
+// Based on https://projecteuler.net/thread=5;page=8
+pub fn alt_smallest_multiple(n: u32) -> u32 {
+    let mut f = 2;
+
+    for x in 1..n {
+        let p = f % x;
+
+        if p != 0 {
+            f = match x % p {
+                0 => f * (x / p),
+                _ => f * x
+            };
+        }
+    }
+
+    f
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -74,5 +92,15 @@ mod tests {
     #[test]
     fn test_smallest_multiple_20() {
         assert_eq!(smallest_multiple(20), 232792560);
+    }
+
+    #[test]
+    fn test_alt_smallest_multiple_10() {
+        assert_eq!(alt_smallest_multiple(10), 2520);
+    }
+
+    #[test]
+    fn test_alt_smallest_multiple_20() {
+        assert_eq!(alt_smallest_multiple(20), 232792560);
     }
 }
