@@ -94,10 +94,9 @@ pub fn lcm(n: u32) -> u32 {
 }
 
 fn gcd(a: u32, b: u32) -> u32 {
-    match b {
-        0 => a,
-        _ => gcd(b, a % b)
-    }
+    if b == 0 { return a }
+
+    gcd(b, a % b)
 }
 
 
