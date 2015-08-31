@@ -10,7 +10,7 @@ pub fn smallest_multiple(n: u32) -> u32 {
     let mut x = n;
 
     while x >= (n / 2) {
-        let ys = max_vec(prime_factors(x));
+        let ys = power_prime_factors(prime_factors(x));
         xs = concat_vecs(&ys, &xs);
 
         x -= 1;
@@ -34,7 +34,7 @@ fn concat_vecs<'a>(a: &'a Vec<u32>, b: &'a Vec<u32>) -> Vec<u32> {
     s
 }
 
-fn max_vec(xs: Vec<u32>) -> Vec<u32> {
+fn power_prime_factors(xs: Vec<u32>) -> Vec<u32> {
     let max: &u32 = xs.iter().max().unwrap();
 
     xs.iter()
