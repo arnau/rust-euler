@@ -26,7 +26,7 @@ pub fn fib(bound: u32) -> Vec<u32> {
 }
 
 // Following the overview
-pub fn alt_sum_even_fib(b: u32) -> u32 {
+pub fn sum_even_fib_2(b: u32) -> u32 {
     let mut s = 0;
     let mut x = 1;
     let mut y = 1;
@@ -40,6 +40,24 @@ pub fn alt_sum_even_fib(b: u32) -> u32 {
 
     s
 }
+
+
+fn nth_fib(n: u32) -> u32 {
+    if n == 0 { return 0; }
+
+    (1..n)
+        .fold((0, 1), |(x, y), _| (y, x + y))
+        .1
+}
+
+pub fn sum_even_fib_3(bound: u32) -> u32 {
+    (1..)
+        .map(nth_fib)
+        .take_while(|&n| n <= bound)
+        .filter(|&x| x % 2 == 0)
+        .fold(0, |sum, n| sum + n)
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -61,8 +79,12 @@ mod tests {
     }
 
     #[test]
-    fn test_alt_sum_even_fib_4_000_000() {
-        assert_eq!(alt_sum_even_fib(4_000_000), 4613732);
+    fn test_sum_even_fib_2_4_000_000() {
+        assert_eq!(sum_even_fib_2(4_000_000), 4613732);
     }
 
+    #[test]
+    fn test_sum_even_fib_3_4_000_000() {
+        assert_eq!(sum_even_fib_3(4_000_000), 4613732);
+    }
 }
