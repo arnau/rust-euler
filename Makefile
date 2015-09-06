@@ -5,6 +5,13 @@ test:
 		arnau/rust \
 		cargo test
 
+ci:
+	docker run -t \
+		-v $(PWD):/source \
+		-w /source \
+		arnau/rust \
+		cargo test
+
 shell:
 	docker run --rm -it \
 		--volumes-from vault \
