@@ -58,6 +58,38 @@ pub fn sum_even_fib_3(bound: u32) -> u32 {
         .fold(0, |sum, n| sum + n)
 }
 
+pub fn sum_even_fib_4(bound: u32) -> u32 {
+    Fibonacci::new()
+        .take_while(|&n| n <= bound)
+        .filter(|&x| x % 2 == 0)
+        .fold(0, |sum, n| sum + n)
+}
+
+#[derive(Debug)]
+pub struct Fibonacci {
+    previous: u32,
+    current: u32
+}
+
+impl Fibonacci {
+    fn new() -> Fibonacci {
+        Fibonacci { previous: 1, current: 1 }
+    }
+}
+
+impl Iterator for Fibonacci {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<u32> {
+        let next = self.previous + self.current;
+
+        self.previous = self.current;
+        self.current = next;
+
+        Some(self.current)
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -87,4 +119,10 @@ mod tests {
     fn test_sum_even_fib_3_4_000_000() {
         assert_eq!(sum_even_fib_3(4_000_000), 4613732);
     }
+
+    #[test]
+    fn test_sum_even_fib_4_4_000_000() {
+        assert_eq!(sum_even_fib_4(4_000_000), 4613732);
+    }
+
 }
