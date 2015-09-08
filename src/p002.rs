@@ -73,7 +73,7 @@ pub struct Fibonacci<T> {
 }
 
 impl<T> Iterator for Fibonacci<T>
-        where T: Add<T, Output = T> + Clone {
+                     where T: Add<T, Output = T> + Clone {
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
