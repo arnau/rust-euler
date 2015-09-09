@@ -55,14 +55,14 @@ pub fn sum_even_fib_3(bound: u32) -> u32 {
     (1..)
         .map(nth_fib)
         .take_while(|&n| n <= bound)
-        .filter(|&x| x % 2 == 0)
+        .filter(|&n| n % 2 == 0)
         .fold(0, |sum, n| sum + n)
 }
 
 pub fn sum_even_fib_4(bound: u32) -> u32 {
     Fibonacci::<u32> { previous: 1, current: 1 }
         .take_while(|&n| n <= bound)
-        .filter(|&x| x % 2 == 0)
+        .filter(|&n| n % 2 == 0)
         .fold(0, |sum, n| sum + n)
 }
 
